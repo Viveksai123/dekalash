@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import { FaStar } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
-import { FaPhoneAlt, FaEnvelope, FaUser } from "react-icons/fa";
+import { FaPhoneAlt, FaEnvelope, FaUser,FaCheckCircle} from "react-icons/fa";
+
 
 const reviewsData = [
   {
@@ -55,18 +56,32 @@ const reviewsData = [
   },
 ];
 
-
+const hrStyle = {
+  color: 'white',
+  borderBottom: '2px solid white', // adjust the width (2px) as needed
+};
 
 const backgroundImages = [
-  "./bg.jpg",
-  "./bg1.jpg",
-  "./bg2.jpg",
-  "./bg1.jpg",
-  "./bg.jpg",
-  "./bg1.jpg",
+  "./bg1.png",
+  "./bg2.png",
+  "./bg4.png",
+  "./bg2.png",
+  "./bg4.png",
+  "./bg1.png",
 ];
 
 const HeroSection = () => {
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setIsSubmitted(true); // Display Thank You page
+  };
+
+  const handleGoBack = () => {
+    setIsSubmitted(false); // Return to the form
+  };
+
   const [currentReviewIndex, setCurrentReviewIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
 
@@ -93,141 +108,156 @@ const HeroSection = () => {
   return (
     <div>
       {/* Navbar */}
-      <div className="md:hidden bg-white text-black flex items-center justify-center px-4 py-2 text-sm">
-        <div className="text-xl font-semibold">COSTICA</div>
+      <div className="bg-white text-black flex items-center justify-center px-4 py-2 text-sm">
+      <img src="./logo.png" alt="logo" className="logo" />
       </div>
-      <nav className="hidden md:block absolute w-full mt-6 flex justify-center items-center px-6 py-4 text-white z-10">
-        <div className="flex justify-center items-center space-x-6 gap-8">
-          <img src="./logo.png" alt="logo" className="logo" />
-        </div>
-      </nav>
+     
 
       {/* Hero Section */}
       <section
   id="home"
-  className="relative flex flex-col md:flex-row justify-between items-center px-6 md:px-12 lg:px-24 h-[100vh] bg-gradient-to-br from-black via-transparent to-transparent bg-fixed bg-cover bg-center text-white"
+  className="relative flex flex-col md:flex-row justify-between items-center px-6 md:px-12 lg:px-24 h-auto min-h-[100vh] bg-gradient-to-br from-black via-transparent to-transparent bg-fixed bg-cover bg-center text-white"
   style={{
     backgroundImage: `linear-gradient(to bottom right, rgba(0, 0, 0, 0.4), transparent), url(${currentBackground})`,
   }}
 >
-        {/* Reviews Section */}
-        <div
-          className="relative z-10 space-y-4 max-w-md mt-8 md:mt-0"
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-        >
-          <div
-            className="bg-transparent rounded-lg p-8 space-y-2 w-full text-black"
-          >
-            {/* User Info */}
-            <div className="flex items-start space-x-3">
-              <div className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center text-xl font-semibold text-gray-600">
-                {currentReview.name.charAt(0)}
-              </div>
-              <div className="flex flex-column items-start justify-start">
-                <p className="font-medium text-white ">{currentReview.name}</p>
-                <p className="text-gray-400 text-sm">{currentReview.date}</p>
-              </div>
-            </div>
-            <hr/>
-            {/* Star Rating */}
-            <div className="flex space-x-1">
-              {Array.from({ length: currentReview.stars }, (_, i) => (
-                <FaStar key={i} className="text-yellow-400" />
-              ))}
-            </div>
-
-            {/* Review Text */}
-            <p className="text-white">{currentReview.review}</p>
-
-            {/* Platform */}
-            <div className="flex flex-row justify-start items-start space-x-2 mt-4">
-              {currentReview.platform === "Google" ? (
-                <FcGoogle size={20} />
-              ) : (
-                <FaFacebook size={20} className="text-blue-600" />
-              )}
-              <p className="text-sm text-white">
-                Posted on {currentReview.platform}
-              </p>
-            </div>
-          </div>
+  {/* Reviews Section */}
+  <div
+    className="relative z-10 space-y-4 max-w-full md:max-w-sm lg:max-w-md mt-8 md:mt-0 w-full md:w-auto"
+    onMouseEnter={handleMouseEnter}
+    onMouseLeave={handleMouseLeave}
+  >
+    <div className="bg-black/30 backdrop-blur-md rounded-2xl p-6 md:p-8 space-y-4 w-full text-black">
+      {/* User Info */}
+      <div className="flex items-start space-x-3">
+        <div className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center text-xl font-semibold text-gray-600">
+          {currentReview.name.charAt(0)}
         </div>
-
-        {/* Form Section */}
-        <div className="relative z-10 bg-white/70 backdrop-blur-md rounded-2xl shadow-2xl p-6 w-full md:w-[40%] text-black mt-6 ">
-      <h2 className="text-2xl font-bold text-center text-gray-800 mb-3 animate-fadeIn">
-        LIVE MASCARA FREE
-      </h2>
-      <p className="text-lg text-center text-gray-600 mb-4 animate-slideIn">
-        Get Your First Full Set of Lashes for{" "}
-        <span className="font-bold text-red-500">$69.99</span>
-      </p>
-      <p className="text-center text-gray-500 mb-5">
-        Regular price <s>$179.99</s> - limited time only
-      </p>
-      <form className="space-y-4">
-        {/* First Name */}
-        <div className="relative group">
-          <label className="block text-gray-600 font-medium mb-1">First Name</label>
-          <div className="flex items-center bg-white/80 border border-gray-300 rounded-lg shadow-sm p-2 transition-all duration-300 group-hover:border-red-500 focus-within:ring focus-within:ring-red-200">
-            <FaUser className="text-gray-500 group-hover:text-red-500 transition-all duration-300 mr-2" />
-            <input
-              type="text"
-              placeholder="First Name"
-              className="w-full bg-transparent focus:outline-none"
-            />
-          </div>
+        <div>
+          <p className="font-medium text-white">{currentReview.name}</p>
+          <p className="text-gray-400 text-sm">{currentReview.date}</p>
         </div>
-        {/* Last Name */}
-        <div className="relative group">
-          <label className="block text-gray-600 font-medium mb-1">Last Name</label>
-          <div className="flex items-center bg-white/80 border border-gray-300 rounded-lg shadow-sm p-2 transition-all duration-300 group-hover:border-red-500 focus-within:ring focus-within:ring-red-200">
-            <FaUser className="text-gray-500 group-hover:text-red-500 transition-all duration-300 mr-2" />
-            <input
-              type="text"
-              placeholder="Last Name"
-              className="w-full bg-transparent focus:outline-none"
-            />
-          </div>
-        </div>
-        {/* Phone */}
-        <div className="relative group">
-          <label className="block text-gray-600 font-medium mb-1">Phone</label>
-          <div className="flex items-center bg-white/80 border border-gray-300 rounded-lg shadow-sm p-2 transition-all duration-300 group-hover:border-red-500 focus-within:ring focus-within:ring-red-200">
-            <FaPhoneAlt className="text-gray-500 group-hover:text-red-500 transition-all duration-300 mr-2" />
-            <input
-              type="tel"
-              placeholder="081234 56789"
-              className="w-full bg-transparent focus:outline-none"
-            />
-          </div>
-        </div>
-        {/* Email */}
-        <div className="relative group">
-          <label className="block text-gray-600 font-medium mb-1">Email</label>
-          <div className="flex items-center bg-white/80 border border-gray-300 rounded-lg shadow-sm p-2 transition-all duration-300 group-hover:border-red-500 focus-within:ring focus-within:ring-red-200">
-            <FaEnvelope className="text-gray-500 group-hover:text-red-500 transition-all duration-300 mr-2" />
-            <input
-              type="email"
-              placeholder="Email"
-              className="w-full bg-transparent focus:outline-none"
-            />
-          </div>
-        </div>
-        {/* Submit Button */}
-        <button
-          type="submit"
-          className="w-full bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold py-2 rounded-lg shadow-lg transition-transform duration-300 hover:scale-105 hover:shadow-xl"
-        >
-          Get My Offer
-        </button>
-        <p className="text-sm text-center text-gray-500 mt-3">
-          Offer will be sent via SMS
-        </p>
-      </form>
+      </div>
+      <hr style={hrStyle} />
+      {/* Star Rating */}
+      <div className="flex space-x-1">
+        {Array.from({ length: currentReview.stars }, (_, i) => (
+          <FaStar key={i} className="text-yellow-400" />
+        ))}
+      </div>
+      {/* Review Text */}
+      <p className="text-white">{currentReview.review}</p>
+      {/* Platform */}
+      <div className="flex flex-row justify-start items-start space-x-2 mt-4">
+        {currentReview.platform === "Google" ? (
+          <FcGoogle size={20} />
+        ) : (
+          <FaFacebook size={20} className="text-blue-600" />
+        )}
+        <p className="text-sm text-white">Posted on {currentReview.platform}</p>
+      </div>
     </div>
-      </section>
+  </div>
+
+  {/* Form Section */}
+  <div className="relative z-10 bg-white/70 backdrop-blur-md rounded-2xl shadow-2xl p-6 w-full md:w-[45%] lg:w-[40%] text-black mt-6 mb-3 md:mt-0">
+      {!isSubmitted ? (
+        <>
+          {/* Form Section */}
+          <h2 className="text-2xl font-bold text-center text-gray-800 mb-3">
+            LIVE MASCARA FREE
+          </h2>
+          <p className="text-center text-gray-500 mb-5">
+            Regular price <s>$179.99</s> - limited time only
+          </p>
+          <form className="space-y-4" onSubmit={handleSubmit}>
+            {/* First Name */}
+            <div className="relative group">
+              <label className="block text-gray-600 font-medium mb-1">
+                First Name
+              </label>
+              <div className="flex items-center bg-white/80 border border-gray-300 rounded-lg shadow-sm p-2 transition-all duration-300 group-hover:border-pink-500 focus-within:ring focus-within:ring-pink-200">
+                <FaUser className="text-gray-500 group-hover:text-pink-500 mr-2" />
+                <input
+                  type="text"
+                  placeholder="First Name"
+                  className="w-full bg-transparent focus:outline-none"
+                />
+              </div>
+            </div>
+            {/* Last Name */}
+            <div className="relative group">
+              <label className="block text-gray-600 font-medium mb-1">
+                Last Name
+              </label>
+              <div className="flex items-center bg-white/80 border border-gray-300 rounded-lg shadow-sm p-2 transition-all duration-300 group-hover:border-pink-500 focus-within:ring focus-within:ring-pink-200">
+                <FaUser className="text-gray-500 group-hover:text-pink-500 mr-2" />
+                <input
+                  type="text"
+                  placeholder="Last Name"
+                  className="w-full bg-transparent focus:outline-none"
+                />
+              </div>
+            </div>
+            {/* Phone */}
+            <div className="relative group">
+              <label className="block text-gray-600 font-medium mb-1">
+                Phone
+              </label>
+              <div className="flex items-center bg-white/80 border border-gray-300 rounded-lg shadow-sm p-2 transition-all duration-300 group-hover:border-pink-500 focus-within:ring focus-within:ring-pink-200">
+                <FaPhoneAlt className="text-gray-500 group-hover:text-pink-500 mr-2" />
+                <input
+                  type="tel"
+                  placeholder="081234 56789"
+                  className="w-full bg-transparent focus:outline-none"
+                />
+              </div>
+            </div>
+            {/* Email */}
+            <div className="relative group">
+              <label className="block text-gray-600 font-medium mb-1">
+                Email
+              </label>
+              <div className="flex items-center bg-white/80 border border-gray-300 rounded-lg shadow-sm p-2 transition-all duration-300 group-hover:border-pink-500 focus-within:ring focus-within:ring-pink-200">
+                <FaEnvelope className="text-gray-500 group-hover:text-pink-500 mr-2" />
+                <input
+                  type="email"
+                  placeholder="Email"
+                  className="w-full bg-transparent focus:outline-none"
+                />
+              </div>
+            </div>
+            {/* Submit Button */}
+            <button
+              type="submit"
+              className="w-full bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white font-bold py-2 rounded-lg shadow-lg transition-transform duration-300 hover:scale-105 hover:shadow-xl"
+            >
+              Get My Offer
+            </button>
+            <p className="text-sm text-center text-gray-500 mt-3">
+              Offer will be sent via SMS
+            </p>
+          </form>
+        </>
+      ) : (
+        <div className="text-center flex flex-col justify-center items-center">
+          {/* Thank You Section */}
+          <FaCheckCircle className="text-pink-500 text-6xl mb-4" />
+          <h2 className="text-3xl font-bold text-gray-800 mb-2">Thank You!</h2>
+          <p className="text-lg text-gray-600 mb-4">
+            Your offer has been submitted successfully.
+          </p>
+          <button
+            onClick={handleGoBack}
+            className="bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white font-bold py-2 px-6 rounded-lg shadow-lg transition-transform duration-300 hover:scale-105 hover:shadow-xl"
+          >
+            Another Response
+          </button>
+        </div>
+      )}
+    </div>
+</section>
+
     </div>
   );
 };

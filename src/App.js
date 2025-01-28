@@ -3,7 +3,8 @@ import HeaderBar from "./components/HeaderBar";
 import HeroSection from "./components/Hero";
 import SubHero from "./components/SubHero";
 import UniqueLashesSection from "./components/Lashes";
-import ReviewsSection from "./components/Review";
+import LandingSection from "./components/Footer";
+import MapAndDetails from "./components/Map";
 // import MapComponent from "./components/MapComponent";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
@@ -15,10 +16,9 @@ function App() {
       <HeroSection />
       <UniqueLashesSection />
       <SubHero/>
-      <ReviewsSection/>
-      {/* <MapComponent /> */}
-
-      {/* Other components */}
+      <MapAndDetails/>
+      <LandingSection/>
+      
     </div>
   );
 }

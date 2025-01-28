@@ -38,7 +38,8 @@ const HeaderBar = () => {
 
       {/* Shipping and Info */}
       <div className="d-none d-md-block color text-center flex-grow text-gray-300">
-        Worldwide Shipping · Free Shipping On Orders Over $100
+      Get Your First Full Set of Lashes for{" "}
+      <span className="font-bold text-red-500">$69.99</span>
       </div>
 
       {/* Country and Currency */}
