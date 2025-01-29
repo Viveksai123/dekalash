@@ -11,7 +11,8 @@ const SubHero = () => {
         id="home"
         className="relative flex flex-col justify-center items-end px-6 md:px-12 lg:px-24 h-[100vh] bg-fixed bg-center text-white"
         style={{
-          backgroundImage: `url("./bg3.png")`, // Replace with your background image URL
+          backgroundImage: `url("./bg3.png")`,
+          backgroundPosition: '50% 25%' // Replace with your background image URL
         }}
       >
         {/* Overlay */}
