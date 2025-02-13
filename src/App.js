@@ -4,7 +4,7 @@ import HeroSection from "./components/Hero";
 import SubHero from "./components/SubHero";
 import UniqueLashesSection from "./components/Lashes";
 import LandingSection from "./components/Footer";
-import MapAndDetails from "./components/Map";
+import CryptoSection from "./components/crypto";
 // import MapComponent from "./components/MapComponent";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
@@ -15,8 +15,9 @@ function App() {
       <HeaderBar />
       <HeroSection />
       <UniqueLashesSection />
+      <CryptoSection/>
       <SubHero/>
-      <MapAndDetails/>
+     
       <LandingSection/>
       
     </div>

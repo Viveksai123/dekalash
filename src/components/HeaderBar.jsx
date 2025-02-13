@@ -1,81 +1,42 @@
-import { FaFacebookF, FaInstagram, FaTwitter, FaTiktok } from "react-icons/fa";
-import { useState } from "react";
+import { FaFacebookF, FaInstagram, FaTwitter, FaTiktok, FaPhone } from "react-icons/fa";
 
 const HeaderBar = () => {
-  // State for country selection
-  const [selectedCountry, setSelectedCountry] = useState({
-    name: "UNITED STATES",
-    currency: "USD $",
-    flag: "https://flagcdn.com/us.svg",
-  });
-
-  // State to handle dropdown visibility
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
-  // List of countries
-  const countries = [
-    { name: "UNITED STATES", currency: "USD $", flag: "https://flagcdn.com/us.svg" },
-    { name: "CANADA", currency: "CAD $", flag: "https://flagcdn.com/ca.svg" },
-    { name: "UNITED KINGDOM", currency: "GBP £", flag: "https://flagcdn.com/gb.svg" },
-    { name: "INDIA", currency: "INR ₹", flag: "https://flagcdn.com/in.svg" },
-    { name: "AUSTRALIA", currency: "AUD $", flag: "https://flagcdn.com/au.svg" },
-  ];
-
-  const handleCountryChange = (country) => {
-    setSelectedCountry(country);
-    setIsDropdownOpen(false); // Close dropdown after selection
-  };
-
   return (
-    <div className="background text-black flex items-center justify-between px-4 py-2 text-sm">
-      {/* Social Icons */}
-      <div className="flex space-x-4">
-        <FaFacebookF className="hover:text-gray-400" />
-        <FaInstagram className="hover:text-gray-400" />
-        <FaTwitter className="hover:text-gray-400" />
-        <FaTiktok className="hover:text-gray-400" />
+    <div className="fixed top-0 left-0 right-0 z-50 
+      bg-[#0a192f]/90 backdrop-blur-sm border-b border-[#00ffff]/20
+      text-[#00ffff] flex items-center justify-between px-6 py-3 
+      text-sm transition-all duration-300 hover:bg-[#0a192f]/95">
+      
+      {/* Social Icons Container */}
+      <div className="flex space-x-6">
+        <FaFacebookF className="hover:text-white cursor-pointer transform hover:scale-110 
+          transition-all duration-300 hover:drop-shadow-[0_0_8px_rgba(0,255,255,0.5)]" 
+          size={16} 
+        />
+        <FaInstagram className="hover:text-white cursor-pointer transform hover:scale-110 
+          transition-all duration-300 hover:drop-shadow-[0_0_8px_rgba(0,255,255,0.5)]" 
+          size={16} 
+        />
+        <FaTwitter className="hover:text-white cursor-pointer transform hover:scale-110 
+          transition-all duration-300 hover:drop-shadow-[0_0_8px_rgba(0,255,255,0.5)]" 
+          size={16} 
+        />
+        <FaTiktok className="hover:text-white cursor-pointer transform hover:scale-110 
+          transition-all duration-300 hover:drop-shadow-[0_0_8px_rgba(0,255,255,0.5)]" 
+          size={16} 
+        />
       </div>
-
-      {/* Shipping and Info */}
-      <div className="d-none d-md-block color text-center flex-grow text-gray-300">
-      Get Your First Full Set of Lashes for{" "}
-      <span className="font-bold text-red-500">$69.99</span>
-      </div>
-
-      {/* Country and Currency */}
-      <div className="relative">
-        <div
-          className="flex items-center space-x-1 cursor-pointer"
-          onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-        >
-          <img
-            src={selectedCountry.flag}
-            alt={`${selectedCountry.name} Flag`}
-            className="w-5 h-5 mr-1"
-          />
-          <span>{`${selectedCountry.name}`}</span>
-          <span className="text-xs">&#9662;</span>
-        </div>
-
-        {/* Dropdown */}
-        {isDropdownOpen && (
-          <div className="absolute right-0 mt-2 w-48 bg-white text-black border border-gray-200 rounded-lg shadow-lg z-50">
-            {countries.map((country, index) => (
-              <div
-                key={index}
-                className="flex items-center px-4 py-2 hover:bg-gray-100 cursor-pointer"
-                onClick={() => handleCountryChange(country)}
-              >
-                <img
-                  src={country.flag}
-                  alt={`${country.name} Flag`}
-                  className="w-5 h-5 mr-2"
-                />
-                <span>{`${country.name}`}</span>
-              </div>
-            ))}
-          </div>
-        )}
+      
+      {/* Phone Number Container */}
+      <div className="flex justify-center items-center space-x-3 
+        hover:text-white transition-all duration-300 group cursor-pointer">
+        <FaPhone className="text-[#00ffff] transform rotate-90 group-hover:scale-110 
+          transition-transform duration-300" 
+          size={14} 
+        />
+        <span className="font-light tracking-wider hover:drop-shadow-[0_0_8px_rgba(0,255,255,0.5)]">
+          +1 (234) 567-8900
+        </span>
       </div>
     </div>
   );
