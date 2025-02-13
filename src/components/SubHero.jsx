@@ -11,7 +11,7 @@ const SubHero = () => {
       >
         {/* Background with zoom animation */}
         <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat animate-slow-zoom"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat animate-fast-zoom"
           style={{
             backgroundImage: `url("./bg1.jpeg")`, // Replace with your cybersecurity themed image
             backgroundPosition: 'center',

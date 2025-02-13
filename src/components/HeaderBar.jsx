@@ -35,8 +35,7 @@ const HeaderBar = () => {
           size={14} 
         />
         <span className="font-light tracking-wider hover:drop-shadow-[0_0_8px_rgba(0,255,255,0.5)]">
-          +1 (234) 567-8900
-        </span>
+          +91 81060 35425       </span>
       </div>
     </div>
   );
