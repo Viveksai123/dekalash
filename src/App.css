@@ -143,3 +143,129 @@ background-color: rgba(252, 247, 238, 100%);
     transform: translateY(-15px);
   }
 }
+/* Advanced Cyberpunk Scrollbar Styles */
+* {
+  scrollbar-width: 1px;
+  scroll-behavior: smooth;
+}
+
+/* Webkit Scrollbar */
+*::-webkit-scrollbar {
+  width: 12px; /* Slightly wider for more detailed design */
+  height: 12px;
+}
+
+*::-webkit-scrollbar-track {
+  background: linear-gradient(
+    135deg, 
+    rgba(14, 23, 42, 0.6), 
+    rgba(0, 255, 255, 0.05)
+  );
+  border-radius: 20px;
+  border: 1px solid rgba(0, 255, 255, 0.1);
+  box-shadow: 
+    inset 0 0 10px rgba(0, 255, 255, 0.1),
+    0 0 15px rgba(0, 255, 255, 0.05);
+}
+
+*::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    225deg, 
+    rgba(0, 255, 255, 0.4), 
+    rgba(0, 255, 255, 0.2)
+  );
+  border-radius: 20px;
+  border: 2px solid rgba(0, 255, 255, 0.2);
+  transition: all 0.3s ease;
+  
+  /* Glowing effect */
+  box-shadow: 
+    0 0 8px rgba(0, 255, 255, 0.3),
+    0 0 15px rgba(0, 255, 255, 0.2),
+    inset 0 0 10px rgba(0, 255, 255, 0.1);
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    225deg, 
+    rgba(0, 255, 255, 0.6), 
+    rgba(0, 255, 255, 0.4)
+  );
+  border-color: rgba(0, 255, 255, 0.4);
+  box-shadow: 
+    0 0 15px rgba(0, 255, 255, 0.5),
+    0 0 25px rgba(0, 255, 255, 0.3),
+    inset 0 0 15px rgba(0, 255, 255, 0.2);
+}
+
+*::-webkit-scrollbar-corner {
+  background: rgba(0, 255, 255, 0.1);
+  border-radius: 20px;
+}
+
+/* Firefox Scrollbar */
+* {
+  scrollbar-color: 
+    rgba(0, 255, 255, 0.4) 
+    rgba(14, 23, 42, 0.6);
+  scrollbar-width: thin;
+}
+
+/* Additional Smooth Scroll for browsers that support it */
+html {
+  scrollbar-gutter: stable;
+}
+
+/* Optional: Scroll Snap for more interactive feel */
+.scroll-snap-container {
+  scroll-snap-type: y mandatory;
+}
+
+.scroll-snap-item {
+  scroll-snap-align: start;
+}
+
+/* Cyberpunk-inspired Custom Scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 10px;
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(0, 255, 255, 0.05);
+  border-radius: 15px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    135deg, 
+    rgba(0, 255, 255, 0.4), 
+    rgba(0, 255, 255, 0.2)
+  );
+  border-radius: 15px;
+  border: 2px solid rgba(0, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    135deg, 
+    rgba(0, 255, 255, 0.6), 
+    rgba(0, 255, 255, 0.4)
+  );
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+}
+
+/* Firefox scrollbar */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 255, 255, 0.4) transparent;
+}
+
+/* Prevent body scroll when modal is open */
+body.modal-open {
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
