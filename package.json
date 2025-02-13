@@ -8,6 +8,7 @@
     "@tsparticles/slim": "^3.8.1",
     "bootstrap": "^5.3.3",
     "cra-template": "1.2.0",
+    "framer-motion": "^12.4.2",
     "leaflet": "^1.9.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

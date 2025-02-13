@@ -5,6 +5,9 @@ import SubHero from "./components/SubHero";
 import UniqueLashesSection from "./components/Lashes";
 import LandingSection from "./components/Footer";
 import CryptoSection from "./components/crypto";
+import SensorSprintSection from "./components/sensor";
+import PresentationSection from "./components/three";
+import OrganizationSection from "./components/detals";
 // import MapComponent from "./components/MapComponent";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
@@ -16,7 +19,10 @@ function App() {
       <HeroSection />
       <UniqueLashesSection />
       <CryptoSection/>
+      <SensorSprintSection/>
+      <PresentationSection/>
       <SubHero/>
+      <OrganizationSection/>
      
       <LandingSection/>
       
