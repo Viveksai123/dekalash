@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { FaClock, FaMapMarkerAlt, FaTrophy, FaArrowLeft } from "react-icons/fa";
 
 const CTFSection = () => {
@@ -98,22 +98,32 @@ const CTFSection = () => {
         <div className="fixed inset-0 z-50 overflow-hidden">
           <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={handleCloseForm}></div>
           
-          <div className="relative z-60 w-full h-full flex flex-col bg-[#0a192f] overflow-hidden">
+          <div className="relative z-60 w-full h-full flex flex-col bg-[#f0ebf8] overflow-hidden">
             {/* Modal Header */}
-            <div className="flex justify-between items-center p-4 bg-[#0a192f]/80 backdrop-blur-sm border-b border-[#00ffff]/20">
-              <button 
-                onClick={handleCloseForm}
-                className="flex items-center space-x-2 text-[#00ffff] hover:text-white"
-              >
-                <FaArrowLeft className="text-lg" />
-                <span className="text-sm font-['Orbitron']">Back</span>
-              </button>
-              
-              <h2 className="text-lg font-['Orbitron'] text-[#00ffff]">CTF Registration</h2>
-              
-              {/* Placeholder for alignment */}
-              <div className="w-24"></div>
-            </div>
+         <div className="flex justify-between items-center p-4 bg-[#0a192f]/80 backdrop-blur-sm border-b border-[#00ffff]/20">
+  {/* Title centered */}
+
+  <button 
+    onClick={handleCloseForm}
+    className="flex items-center space-x-2 text-[#00ffff] hover:text-white"
+  >
+    <FaArrowLeft className="text-lg" />
+    <span className="text-sm font-['Orbitron']">Back</span>
+    
+  </button>
+ 
+  <h2 className="text-lg font-['Orbitron'] text-[#00ffff] flex-1 text-center">
+    CTF Registration
+  </h2>
+  {/* Placeholder for alignment */}
+  <div className="w-24"></div>
+
+  {/* Back Button on the right */}
+  
+
+ 
+</div>
+
 
             {/* Google Form Iframe */}
             <div className="flex-grow overflow-auto custom-scrollbar">

@@ -47,18 +47,18 @@ const SubHero = () => {
       <style jsx global>{`
         @keyframes zoom {
           0% {
-            transform: scale(1);
-          }
-          50% {
             transform: scale(1.1);
           }
+          50% {
+            transform: scale(1.5);
+          }
           100% {
-            transform: scale(1);
+            transform: scale(1.1);
           }
         }
 
-        .animate-slow-zoom {
-          animation: zoom 20s infinite;
+        .animate-fast-zoom {
+          animation: zoom 50s infinite;
         }
       `}</style>
     </div>

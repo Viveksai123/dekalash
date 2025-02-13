@@ -8,6 +8,7 @@ import CryptoSection from "./components/crypto";
 import SensorSprintSection from "./components/sensor";
 import PresentationSection from "./components/three";
 import OrganizationSection from "./components/detals";
+import MarqueeSection from "./components/Marque";
 // import MapComponent from "./components/MapComponent";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
@@ -16,7 +17,9 @@ function App() {
   return (
     <div>
       <HeaderBar />
+
       <HeroSection />
+      <MarqueeSection/>
       <UniqueLashesSection />
       <CryptoSection/>
       <SensorSprintSection/>
