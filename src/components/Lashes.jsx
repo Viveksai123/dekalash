@@ -5,7 +5,7 @@ const CTFSection = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);
 
   // Google Form embed URL
-  const googleFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLScp1DOn9qKeaYNEBM_1scnW515DSJReCOKaqGnwljpenpsJQQ/viewform?embedded=true";
+  const googleFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSckCI9Ag2o4F7F17jd7j8LowW_QR-viAi0NLvKH9tcZ_bFqKA/viewform?usp=dialog";
 
   const handleRegisterClick = () => {
     setIsFormOpen(true);
