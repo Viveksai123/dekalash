@@ -30,7 +30,7 @@ const LandingSection = () => {
 
         {/* Right Side Link */}
         <a 
-          href="https://calm-capybara-3548ea.netlify.app"
+          href="https://cetcybernexa-home.netlify.app"
           className="text-[#00ffff] no-underline text-sm md:text-base hover:text-[#4dd0e1]
             transition-all duration-300 font-['Orbitron']
             border border-[#00ffff]/20 px-4 py-1 rounded-md

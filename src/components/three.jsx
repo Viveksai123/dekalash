@@ -1,9 +1,75 @@
-import React from 'react';
-import { FaClock, FaMapMarkerAlt, FaLaptop, FaFile, FaProjectDiagram } from 'react-icons/fa';
+import React, { useState } from 'react';
+import { FaClock, FaMapMarkerAlt, FaLaptop, FaFile, FaProjectDiagram, FaArrowLeft } from 'react-icons/fa';
 
 const PresentationSection = () => {
+
+  const [activeForms, setActiveForms] = useState({
+    poster: false,
+    paper: false,
+    project: false
+  });
+
+  // Google Form URLs for each type - Replace with actual URLs
+  const formUrls = {
+    poster: "https://docs.google.com/forms/d/e/1FAIpQLScp1DOn9qKeaYNEBM_1scnW515DSJReCOKaqGnwljpenpsJQQ/viewform?embedded=true",
+    paper: "https://docs.google.com/forms/d/e/1FAIpQLScp1DOn9qKeaYNEBM_1scnW515DSJReCOKaqGnwljpenpsJQQ/viewform?embedded=true",
+    project: "https://docs.google.com/forms/d/e/1FAIpQLScp1DOn9qKeaYNEBM_1scnW515DSJReCOKaqGnwljpenpsJQQ/viewform?embedded=true"
+  };
+
+  // Form handlers
+  const openForm = (formType) => {
+    setActiveForms({ ...activeForms, [formType]: true });
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeForm = (formType) => {
+    setActiveForms({ ...activeForms, [formType]: false });
+    document.body.style.overflow = 'auto';
+  };
+
+  const FormModal = ({ formType, title }) => (
+    <div className="fixed inset-0 z-50 overflow-hidden">
+      <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" 
+           onClick={() => closeForm(formType)}></div>
+      
+      <div className="relative z-60 w-full h-full flex flex-col bg-[#f0ebf8] overflow-hidden">
+        <div className="flex justify-between items-center p-4 bg-[#0a192f]/80 backdrop-blur-sm border-b border-[#00ffff]/20">
+          <button 
+            onClick={() => closeForm(formType)}
+            className="flex items-center justify-center space-x-2 text-[#00ffff] hover:text-white"
+          >
+            <FaArrowLeft className="text-lg" />
+            <span className="text-sm font-['Orbitron']">Back</span>
+          </button>
+
+          <div className="w-24"></div>
+
+          <h2 className="text-lg font-['Orbitron'] text-[#00ffff] flex-1 text-center">
+            {title} Submission
+          </h2>
+        </div>
+
+        <div className="flex-grow overflow-auto custom-scrollbar">
+          <iframe
+            src={formUrls[formType]}
+            width="100%"
+            height="100%"
+            frameBorder="0"
+            marginHeight="0"
+            marginWidth="0"
+            title={`${title} Submission Form`}
+            className="border-none"
+          >
+            Loading...
+          </iframe>
+        </div>
+      </div>
+    </div>
+  );
+
+
   return (
-    <div className="min-h-screen bg-[#0a192f] py-10 sm:py-16 md:py-20 px-4 sm:px-6 md:px-8">
+       <div className="min-h-screen bg-[#0a192f] py-10 sm:py-16 md:py-20 px-4 sm:px-6 md:px-8">
       <div className="max-w-7xl mx-auto space-y-12">
         {/* Poster Presentation Section - Reverse Layout */}
         <div className="bg-[#0a192f]/40 backdrop-blur-sm border border-[#00ffff]/20 rounded-lg sm:rounded-xl 
@@ -62,12 +128,14 @@ const PresentationSection = () => {
                 </div>
               </div>
 
-              <button className="mt-6 sm:mt-8 px-4 sm:px-6 py-2.5 sm:py-3 bg-transparent 
-                border-2 border-[#00ffff] text-[#00ffff] text-sm sm:text-base
-                rounded-lg hover:bg-[#00ffff]/10 transition-all duration-300 
-                hover:shadow-[0_0_15px_rgba(0,255,255,0.3)] font-['Orbitron']">
-                Submit Poster
-              </button>
+              <button 
+            onClick={() => openForm('poster')}
+            className="mt-6 sm:mt-8 px-4 sm:px-6 py-2.5 sm:py-3 bg-transparent 
+              border-2 border-[#00ffff] text-[#00ffff] text-sm sm:text-base
+              rounded-lg hover:bg-[#00ffff]/10 transition-all duration-300 
+              hover:shadow-[0_0_15px_rgba(0,255,255,0.3)] font-['Orbitron']">
+            Submit Poster
+          </button>
             </div>
           </div>
         </div>
@@ -129,12 +197,14 @@ const PresentationSection = () => {
                 </div>
               </div>
 
-              <button className="mt-6 sm:mt-8 px-4 sm:px-6 py-2.5 sm:py-3 bg-transparent 
-                border-2 border-[#00ffff] text-[#00ffff] text-sm sm:text-base
-                rounded-lg hover:bg-[#00ffff]/10 transition-all duration-300 
-                hover:shadow-[0_0_15px_rgba(0,255,255,0.3)] font-['Orbitron']">
-                Submit Paper
-              </button>
+              <button 
+            onClick={() => openForm('paper')}
+            className="mt-6 sm:mt-8 px-4 sm:px-6 py-2.5 sm:py-3 bg-transparent 
+              border-2 border-[#00ffff] text-[#00ffff] text-sm sm:text-base
+              rounded-lg hover:bg-[#00ffff]/10 transition-all duration-300 
+              hover:shadow-[0_0_15px_rgba(0,255,255,0.3)] font-['Orbitron']">
+            Submit Poster
+          </button>
             </div>
           </div>
         </div>
@@ -196,15 +266,20 @@ const PresentationSection = () => {
                 </div>
               </div>
 
-              <button className="mt-6 sm:mt-8 px-4 sm:px-6 py-2.5 sm:py-3 bg-transparent 
-                border-2 border-[#00ffff] text-[#00ffff] text-sm sm:text-base
-                rounded-lg hover:bg-[#00ffff]/10 transition-all duration-300 
-                hover:shadow-[0_0_15px_rgba(0,255,255,0.3)] font-['Orbitron']">
-                Submit Project
-              </button>
+              <button 
+            onClick={() => openForm('project')}
+            className="mt-6 sm:mt-8 px-4 sm:px-6 py-2.5 sm:py-3 bg-transparent 
+              border-2 border-[#00ffff] text-[#00ffff] text-sm sm:text-base
+              rounded-lg hover:bg-[#00ffff]/10 transition-all duration-300 
+              hover:shadow-[0_0_15px_rgba(0,255,255,0.3)] font-['Orbitron']">
+            Submit Poster
+          </button>
             </div>
           </div>
         </div>
+        {activeForms.poster && <FormModal formType="poster" title="Poster" />}
+        {activeForms.paper && <FormModal formType="paper" title="Paper" />}
+        {activeForms.project && <FormModal formType="project" title="Project" />}
       </div>
     </div>
   );

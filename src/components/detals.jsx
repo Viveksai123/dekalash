@@ -56,49 +56,49 @@ const OrganizationSection = () => {
 
   const facultyCoordinators = [
     {
-      name: "S.Kranthi",
+      name: "Smt. G. Mamatha",
       designation: "Assistant Professor",
+      image: "/mamatha.jpeg"
+    },
+    {
+      name: "Mrs Srilakshmi ch",
+      designation: "Assistant Professor",
+      image: "/srilaxmi.jpeg"
+    },
+    {
+      name: "Dr Subramaniam M",
+      designation: "Assistant Professor",
+      image: "/subbu.jpeg"
+    },
+    {
+      name: "Dr. Singamaneni Kranthi Kumar",
+      designation: "Associate Professor",
       image: "/kranthi.jpeg"
     },
     {
-      name: "P.Vimala Ruth",
+      name: "Smt. P. Vimala Manohara Ruth",
       designation: "Assistant Professor",
       image: "/ruth.jpeg"
     },
     {
-      name: "N.Sujatha Gupta",
+      name: "Smt. N. Sujata Gupta",
       designation: "Assistant Professor",
       image: "/sujatha.jpeg"
     },
     {
-      name: "S.Kranthi",
-      designation: "Assistant Professor",
-      image: "/kranthi.jpeg"
-    },
-    {
-      name: "P.Vimala Ruth",
-      designation: "Assistant Professor",
-      image: "/ruth.jpeg"
-    },
-    {
-      name: "N.Sujatha Gupta",
-      designation: "Assistant Professor",
-      image: "/sujatha.jpeg"
-    },
-    {
-      name: "Kavitha Agarwal",
+      name: "Smt. Kavita Agarwal",
       designation: "Assistant Professor",
       image: "/kavitha.jpeg"
     },
     {
-      name: "Jaya Rao",
+      name: "Dr. G. Jaya Rao",
       designation: "Assistant Professor",
       image: "/jaya.jpeg"
     },
     {
-      name: "Manish Kumar",
+      name: "Mr. Manish Kumar",
       designation: "Assistant Professor",
-      image: "/bg1.jpeg"
+      image: "/manish.jpeg"
     }
   ];
 
@@ -117,8 +117,8 @@ const OrganizationSection = () => {
 
   const Hod = [
     {
-      name: "Sangeeta Gupta",
-      designation: "Head Of Department",
+      name: "Dr. Sangeeta Gupta",
+      designation: "Head Of Department CET",
       image: "/sangeeta.png"
     }
   ];
