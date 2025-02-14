@@ -271,10 +271,13 @@ body.modal-open {
 }
 
 @keyframes scroll-left {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  0% { transform: translateX(100%); } /* Start from the right */
+  100% { transform: translateX(-100%); } /* Move left infinitely */
 }
 
 .animate-scroll-left {
   animation: scroll-left 30s linear infinite;
+  white-space: nowrap;
+  display: flex;
 }
+

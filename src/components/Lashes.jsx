@@ -105,19 +105,21 @@ const CTFSection = () => {
 
   <button 
     onClick={handleCloseForm}
-    className="flex items-center space-x-2 text-[#00ffff] hover:text-white"
+    className="flex items-center justify-center space-x-2 text-[#00ffff] hover:text-white"
   >
     <FaArrowLeft className="text-lg" />
     <span className="text-sm font-['Orbitron']">Back</span>
     
   </button>
+
+  <div className="w-24"></div>
+
  
   <h2 className="text-lg font-['Orbitron'] text-[#00ffff] flex-1 text-center">
     CTF Registration
   </h2>
   {/* Placeholder for alignment */}
-  <div className="w-24"></div>
-
+ 
   {/* Back Button on the right */}
   
 
