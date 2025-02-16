@@ -272,7 +272,7 @@ const PresentationSection = () => {
               border-2 border-[#00ffff] text-[#00ffff] text-sm sm:text-base
               rounded-lg hover:bg-[#00ffff]/10 transition-all duration-300 
               hover:shadow-[0_0_15px_rgba(0,255,255,0.3)] font-['Orbitron']">
-            Resgister
+            Register
           </button>
             </div>
           </div>
