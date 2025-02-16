@@ -5,7 +5,7 @@ const SensorSprintSection = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);
 
   // Google Form embed URL - Replace with your actual form URL
-  const googleFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLScp1DOn9qKeaYNEBM_1scnW515DSJReCOKaqGnwljpenpsJQQ/viewform?embedded=true";
+  const googleFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSeYMSzk271ESzs1S7g-a-djyN9cR8j2cIzIfPuqaD6n9TSE9g/viewform?embedded=true";
 
   const handleRegisterClick = () => {
     setIsFormOpen(true);

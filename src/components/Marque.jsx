@@ -30,7 +30,7 @@ const MarqueeSection = () => {
                   Register for either 
                   <span className="text-[#00ffff] mx-1">Capture The Flag</span> 
                   or 
-                  <span className="text-[#00ffff] mx-1">Crypto Auction</span> 
+                  <span className="text-[#00ffff] mx-1">Crypto Masters</span> 
                   for a chance to participate in both events! Limited slots available.
                 </span>
               </span>

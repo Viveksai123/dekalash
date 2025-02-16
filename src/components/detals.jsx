@@ -115,6 +115,14 @@ const OrganizationSection = () => {
     }
   ];
 
+  const co = [
+    {
+      name: "Vivek & Aryan",
+      designation: "Institute wise co ordinators",
+      image: "/vivek.jpeg"
+    }
+  ];
+
   const Hod = [
     {
       name: "Dr. Sangeeta Gupta",
@@ -152,47 +160,38 @@ const OrganizationSection = () => {
             </h3>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-  {Hod.map((faculty, index) => (
-    <motion.div
-      key={index}
-      whileHover={{ scale: 1.02 }}
-      className="relative h-56 group overflow-hidden rounded-xl"
+            
+          {Hod.map((faculty, index) => (
+  <motion.div
+    key={index}
+    whileHover={{ scale: 1.02 }}
+    className="relative h-56 w-full group overflow-hidden rounded-xl"
+  >
+    {/* Background Image (Initially Visible) */}
+    <div
+      className="absolute inset-0 bg-cover bg-center transition-all duration-500 group-hover:scale-110"
+      style={{
+        backgroundImage: `url(${faculty.image})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    ></div>
+
+    {/* Name & Designation (Initially Hidden, Slides In) */}
+    <div
+      className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-[#0a192f] to-transparent text-center py-4 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-in-out"
     >
-      {/* Default State */}
-      <div className="absolute inset-0 z-20 bg-[#1a2942] border border-[#00ffff]/20 
-        group-hover:opacity-0 transition-all duration-500">
-        <div className="h-full flex flex-col items-center justify-center p-6">
-          <h4 className="text-lg font-['Orbitron'] tracking-wider text-[#00ffff] text-center mb-2">
-            {faculty.name}
-          </h4>
-          <p className="text-sm text-gray-300">{faculty.designation}</p>
-        </div>
-      </div>
+      <h4 className="text-lg font-['Orbitron'] tracking-wider text-[#00ffff]">
+        {faculty.name}
+      </h4>
+      <p className="text-sm text-gray-300">{faculty.designation}</p>
+    </div>
+  </motion.div>
+))}
 
-      {/* Background Image */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center"
-        style={{ 
-          backgroundImage: `url(${faculty.image})`,
-          backgroundPosition: 'center',
-        }}
-      />
 
-      {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#0a192f]/80 via-[#0a192f]/60 to-[#0a192f]/90" />
 
-      {/* Hover Content */}
-      <div className="absolute inset-0 z-10 opacity-0 group-hover:opacity-100 
-        flex items-center justify-center transition-all duration-500">
-        <h4 className="text-xl font-['Orbitron'] font-bold bg-gradient-to-r 
-          from-[#00ffff] to-[#0891b2] text-transparent bg-clip-text
-          tracking-wider transform translate-y-4 group-hover:translate-y-0 
-          transition-all duration-500">
-          {faculty.name}
-        </h4>
-      </div>
-    </motion.div>
-  ))}
+
 </div>
         </motion.div>
 
@@ -209,47 +208,77 @@ const OrganizationSection = () => {
             </h3>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-  {facultyCoordinators.map((faculty, index) => (
-    <motion.div
-      key={index}
-      whileHover={{ scale: 1.02 }}
-      className="relative h-56 group overflow-hidden rounded-xl"
+          {facultyCoordinators.map((faculty, index) => (
+  <motion.div
+    key={index}
+    whileHover={{ scale: 1.02 }}
+    className="relative h-56 w-full group overflow-hidden rounded-xl"
+  >
+    {/* Background Image (Initially Visible) */}
+    <div
+      className="absolute inset-0 bg-cover bg-center transition-all duration-500 group-hover:scale-110"
+      style={{
+        backgroundImage: `url(${faculty.image})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    ></div>
+
+    {/* Name & Designation (Initially Hidden, Slides In) */}
+    <div
+      className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-[#0a192f] to-transparent text-center py-4 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-in-out"
     >
-      {/* Default State */}
-      <div className="absolute inset-0 z-20 bg-[#1a2942] border border-[#00ffff]/20 
-        group-hover:opacity-0 transition-all duration-500">
-        <div className="h-full flex flex-col items-center justify-center p-6">
-          <h4 className="text-lg font-['Orbitron'] tracking-wider text-[#00ffff] text-center mb-2">
-            {faculty.name}
-          </h4>
-          <p className="text-sm text-gray-300">{faculty.designation}</p>
-        </div>
-      </div>
+      <h4 className="text-lg font-['Orbitron'] tracking-wider text-[#00ffff]">
+        {faculty.name}
+      </h4>
+      <p className="text-sm text-gray-300">{faculty.designation}</p>
+    </div>
+  </motion.div>
+))}
+</div>
+        </motion.div>
 
-      {/* Background Image */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center"
-        style={{ 
-          backgroundImage: `url(${faculty.image})`,
-          backgroundPosition: 'center',
-        }}
-      />
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="mb-20"
+        >
+          <div className="flex items-center justify-center gap-3 mb-10">
+            <FaChalkboardTeacher className="text-[#00ffff] text-3xl" />
+            <h3 className="text-3xl font-['Orbitron'] text-[#00ffff]">
+              Institute Coordinators
+            </h3>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {co.map((faculty, index) => (
+  <motion.div
+    key={index}
+    whileHover={{ scale: 1.02 }}
+    className="relative h-56 w-full group overflow-hidden rounded-xl"
+  >
+    {/* Background Image (Initially Visible) */}
+    <div
+      className="absolute inset-0 bg-cover bg-center transition-all duration-500 group-hover:scale-110"
+      style={{
+        backgroundImage: `url(${faculty.image})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    ></div>
 
-      {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#0a192f]/80 via-[#0a192f]/60 to-[#0a192f]/90" />
+    {/* Name & Designation (Initially Hidden, Slides In) */}
+    <div
+  className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-[#020a16] to-transparent text-center py-4 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-in-out"
+>
 
-      {/* Hover Content */}
-      <div className="absolute inset-0 z-10 opacity-0 group-hover:opacity-100 
-        flex items-center justify-center transition-all duration-500">
-        <h4 className="text-xl font-['Orbitron'] font-bold bg-gradient-to-r 
-          from-[#00ffff] to-[#0891b2] text-transparent bg-clip-text
-          tracking-wider transform translate-y-4 group-hover:translate-y-0 
-          transition-all duration-500">
-          {faculty.name}
-        </h4>
-      </div>
-    </motion.div>
-  ))}
+
+      <h4 className="text-lg font-['Orbitron'] tracking-wider text-[#00ffff]">
+        {faculty.name}
+      </h4>
+      <p className="text-sm text-gray-300">{faculty.designation}</p>
+    </div>
+  </motion.div>
+))}
 </div>
         </motion.div>
 
@@ -265,49 +294,38 @@ const OrganizationSection = () => {
             </h3>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-  {convenor.map((faculty, index) => (
-    <motion.div
-      key={index}
-      whileHover={{ scale: 1.02 }}
-      className="relative h-56 group overflow-hidden rounded-xl"
+          {convenor.map((faculty, index) => (
+  <motion.div
+    key={index}
+    whileHover={{ scale: 1.02 }}
+    className="relative h-56 w-full group overflow-hidden rounded-xl"
+  >
+    {/* Background Image (Initially Visible) */}
+    <div
+      className="absolute inset-0 bg-cover bg-center transition-all duration-500 group-hover:scale-110"
+      style={{
+        backgroundImage: `url(${faculty.image})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    ></div>
+
+    {/* Name & Designation (Initially Hidden, Slides In) */}
+    <div
+      className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-[#0a192f] to-transparent text-center py-4 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-in-out"
     >
-      {/* Default State */}
-      <div className="absolute inset-0 z-20 bg-[#1a2942] border border-[#00ffff]/20 
-        group-hover:opacity-0 transition-all duration-500">
-        <div className="h-full flex flex-col items-center justify-center p-6">
-          <h4 className="text-lg font-['Orbitron'] tracking-wider text-[#00ffff] text-center mb-2">
-            {faculty.name}
-          </h4>
-          <p className="text-sm text-gray-300">{faculty.designation}</p>
-        </div>
-      </div>
-
-      {/* Background Image */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center"
-        style={{ 
-          backgroundImage: `url(${faculty.image})`,
-          backgroundPosition: 'center',
-        }}
-      />
-
-      {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#0a192f]/80 via-[#0a192f]/60 to-[#0a192f]/90" />
-
-      {/* Hover Content */}
-      <div className="absolute inset-0 z-10 opacity-0 group-hover:opacity-100 
-        flex items-center justify-center transition-all duration-500">
-        <h4 className="text-xl font-['Orbitron'] font-bold bg-gradient-to-r 
-          from-[#00ffff] to-[#0891b2] text-transparent bg-clip-text
-          tracking-wider transform translate-y-4 group-hover:translate-y-0 
-          transition-all duration-500">
-          {faculty.name}
-        </h4>
-      </div>
-    </motion.div>
-  ))}
+      <h4 className="text-lg font-['Orbitron'] tracking-wider text-[#00ffff]">
+        {faculty.name}
+      </h4>
+      <p className="text-sm text-gray-300">{faculty.designation}</p>
+    </div>
+  </motion.div>
+))}
 </div>
         </motion.div>
+
+
+      
 
         {/* Student Coordinators */}
         <motion.div
