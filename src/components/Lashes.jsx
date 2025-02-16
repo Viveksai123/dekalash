@@ -49,8 +49,8 @@ const CTFSection = () => {
                   <div className="flex items-center space-x-3 md:space-x-4">
                     <FaClock className="text-[#00ffff] text-lg md:text-xl" />
                     <div>
-                      <p className="font-semibold text-[#00ffff] text-sm md:text-base">Time & Date</p>
-                      <p className="text-xs md:text-sm">February 20, 2025 - 10:00 AM EST</p>
+                      <p className="font-semibold text-[#00ffff] text-sm md:text-base">Date</p>
+                      <p className="text-xs md:text-sm">MARCH 4th & 5th</p>
                     </div>
                   </div>
                   
@@ -60,7 +60,7 @@ const CTFSection = () => {
                     <div>
                       <p className="font-semibold text-[#00ffff] text-sm md:text-base">Location</p>
                       <p className="text-xs md:text-sm">Tech Innovation Hub</p>
-                      <p className="text-xs md:text-sm">123 Cyber Street, Digital City</p>
+                      <p className="text-xs md:text-sm">CSE LAB 9 & CSE LAB 10</p>
                     </div>
                   </div>
                   
@@ -69,7 +69,7 @@ const CTFSection = () => {
                     <FaTrophy className="text-[#00ffff] text-lg md:text-xl" />
                     <div>
                       <p className="font-semibold text-[#00ffff] text-sm md:text-base">Event Format</p>
-                      <p className="text-xs md:text-sm">3 Challenging Rounds:</p>
+                      <p className="text-xs md:text-sm">Challenging In Rounds:</p>
                       <ul className="list-disc list-inside pl-4 space-y-1 mt-1 md:mt-2">
                         <li className="text-xs md:text-sm">Web Exploitation</li>
                         <li className="text-xs md:text-sm">Cryptography</li>

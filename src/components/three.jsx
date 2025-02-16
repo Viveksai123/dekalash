@@ -11,9 +11,9 @@ const PresentationSection = () => {
 
   // Google Form URLs for each type - Replace with actual URLs
   const formUrls = {
-    poster: "https://docs.google.com/forms/d/e/1FAIpQLScp1DOn9qKeaYNEBM_1scnW515DSJReCOKaqGnwljpenpsJQQ/viewform?embedded=true",
-    paper: "https://docs.google.com/forms/d/e/1FAIpQLScp1DOn9qKeaYNEBM_1scnW515DSJReCOKaqGnwljpenpsJQQ/viewform?embedded=true",
-    project: "https://docs.google.com/forms/d/e/1FAIpQLScp1DOn9qKeaYNEBM_1scnW515DSJReCOKaqGnwljpenpsJQQ/viewform?embedded=true"
+    poster: "https://docs.google.com/forms/d/e/1FAIpQLSclTmH0zbRQRnbC9-pAWEBVQDu8B3q8E_Jy4hq3rgxX-osvFA/viewform?embedded=true",
+    paper: "https://docs.google.com/forms/d/e/1FAIpQLSf3sEugKJH2ouhV7YPPMMi4ywHajIBud0e6MumdareFbo_p8g/viewform?embedded=true",
+    project: "https://docs.google.com/forms/d/e/1FAIpQLSeT7-JvcGvA3ARf4RQBqcFBJMAfUT3Os85cHwC9MI-0zg0S3w/viewform?embedded=true"
   };
 
   // Form handlers
@@ -102,8 +102,8 @@ const PresentationSection = () => {
                 <div className="flex items-start space-x-3 sm:space-x-4">
                   <FaClock className="text-[#00ffff] text-lg sm:text-xl mt-1" />
                   <div>
-                    <p className="font-semibold text-[#00ffff] text-sm sm:text-base">Time Slot</p>
-                    <p className="text-sm sm:text-base">10:00 AM - 12:00 PM</p>
+                    <p className="font-semibold text-[#00ffff] text-sm sm:text-base">Date</p>
+                    <p className="text-sm sm:text-base">MARCH 4th & 5th</p>
                   </div>
                 </div>
 
@@ -111,7 +111,7 @@ const PresentationSection = () => {
                   <FaMapMarkerAlt className="text-[#00ffff] text-lg sm:text-xl mt-1" />
                   <div>
                     <p className="font-semibold text-[#00ffff] text-sm sm:text-base">Venue</p>
-                    <p className="text-sm sm:text-base">Exhibition Hall A</p>
+                    <p className="text-sm sm:text-base">C-301</p>
                   </div>
                 </div>
 
@@ -134,7 +134,7 @@ const PresentationSection = () => {
               border-2 border-[#00ffff] text-[#00ffff] text-sm sm:text-base
               rounded-lg hover:bg-[#00ffff]/10 transition-all duration-300 
               hover:shadow-[0_0_15px_rgba(0,255,255,0.3)] font-['Orbitron']">
-            Submit Poster
+            Register
           </button>
             </div>
           </div>
@@ -171,8 +171,8 @@ const PresentationSection = () => {
                 <div className="flex items-start space-x-3 sm:space-x-4">
                   <FaClock className="text-[#00ffff] text-lg sm:text-xl mt-1" />
                   <div>
-                    <p className="font-semibold text-[#00ffff] text-sm sm:text-base">Time Slot</p>
-                    <p className="text-sm sm:text-base">2:00 PM - 4:00 PM</p>
+                    <p className="font-semibold text-[#00ffff] text-sm sm:text-base">Date</p>
+                    <p className="text-sm sm:text-base">MARCH 4th & 5th</p>
                   </div>
                 </div>
 
@@ -180,7 +180,7 @@ const PresentationSection = () => {
                   <FaMapMarkerAlt className="text-[#00ffff] text-lg sm:text-xl mt-1" />
                   <div>
                     <p className="font-semibold text-[#00ffff] text-sm sm:text-base">Venue</p>
-                    <p className="text-sm sm:text-base">Conference Room B</p>
+                    <p className="text-sm sm:text-base">Not Specified</p>
                   </div>
                 </div>
 
@@ -203,7 +203,7 @@ const PresentationSection = () => {
               border-2 border-[#00ffff] text-[#00ffff] text-sm sm:text-base
               rounded-lg hover:bg-[#00ffff]/10 transition-all duration-300 
               hover:shadow-[0_0_15px_rgba(0,255,255,0.3)] font-['Orbitron']">
-            Submit Poster
+            Register
           </button>
             </div>
           </div>
@@ -240,8 +240,8 @@ const PresentationSection = () => {
                 <div className="flex items-start space-x-3 sm:space-x-4">
                   <FaClock className="text-[#00ffff] text-lg sm:text-xl mt-1" />
                   <div>
-                    <p className="font-semibold text-[#00ffff] text-sm sm:text-base">Time Slot</p>
-                    <p className="text-sm sm:text-base">4:30 PM - 6:30 PM</p>
+                    <p className="font-semibold text-[#00ffff] text-sm sm:text-base">Date</p>
+                    <p className="text-sm sm:text-base">MARCH 4th & 5th</p>
                   </div>
                 </div>
 
@@ -249,7 +249,7 @@ const PresentationSection = () => {
                   <FaMapMarkerAlt className="text-[#00ffff] text-lg sm:text-xl mt-1" />
                   <div>
                     <p className="font-semibold text-[#00ffff] text-sm sm:text-base">Venue</p>
-                    <p className="text-sm sm:text-base">Demo Hall C</p>
+                    <p className="text-sm sm:text-base">C-302</p>
                   </div>
                 </div>
 
@@ -272,7 +272,7 @@ const PresentationSection = () => {
               border-2 border-[#00ffff] text-[#00ffff] text-sm sm:text-base
               rounded-lg hover:bg-[#00ffff]/10 transition-all duration-300 
               hover:shadow-[0_0_15px_rgba(0,255,255,0.3)] font-['Orbitron']">
-            Submit Poster
+            Resgister
           </button>
             </div>
           </div>

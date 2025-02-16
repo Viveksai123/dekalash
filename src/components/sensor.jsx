@@ -5,7 +5,7 @@ const SensorSprintSection = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);
 
   // Google Form embed URL - Replace with your actual form URL
-  const googleFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSeYMSzk271ESzs1S7g-a-djyN9cR8j2cIzIfPuqaD6n9TSE9g/viewform?embedded=true";
+  const googleFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSf3sEugKJH2ouhV7YPPMMi4ywHajIBud0e6MumdareFbo_p8g/viewform?embedded=true";
 
   const handleRegisterClick = () => {
     setIsFormOpen(true);
@@ -57,7 +57,7 @@ const SensorSprintSection = () => {
                     <FaClock className="text-[#00ffff] text-lg sm:text-xl mt-1" />
                     <div>
                       <p className="font-semibold text-[#00ffff] text-sm sm:text-base">Competition Schedule</p>
-                      <p className="text-sm sm:text-base">March 15, 2025 - 9:00 AM EST</p>
+                      <p className="text-sm sm:text-base">MARCH 4th & 5th</p>
                     </div>
                   </div>
 
@@ -66,8 +66,8 @@ const SensorSprintSection = () => {
                     <FaMapMarkerAlt className="text-[#00ffff] text-lg sm:text-xl mt-1" />
                     <div>
                       <p className="font-semibold text-[#00ffff] text-sm sm:text-base">Location</p>
-                      <p className="text-sm sm:text-base">Tech Innovation Center</p>
-                      <p className="text-sm sm:text-base">789 Sensor Valley, Innovation City</p>
+                      <p className="text-sm sm:text-base">CBIT</p>
+                      
                     </div>
                   </div>
 
@@ -92,7 +92,7 @@ const SensorSprintSection = () => {
                     border-2 border-[#00ffff] text-[#00ffff] text-sm sm:text-base
                     rounded-lg hover:bg-[#00ffff]/10 transition-all duration-300 
                     hover:shadow-[0_0_15px_rgba(0,255,255,0.3)] font-['Orbitron']">
-                  Register Now
+                  Register
                 </button>
               </div>
             </div>

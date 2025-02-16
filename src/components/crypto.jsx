@@ -5,7 +5,7 @@ const CryptoAuction = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);
 
   // Google Form embed URL - Replace with your actual form URL
-  const googleFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLScp1DOn9qKeaYNEBM_1scnW515DSJReCOKaqGnwljpenpsJQQ/viewform?embedded=true";
+  const googleFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSeYMSzk271ESzs1S7g-a-djyN9cR8j2cIzIfPuqaD6n9TSE9g/viewform?embedded=true";
 
   const handleAuctionClick = () => {
     setIsFormOpen(true);
@@ -56,8 +56,8 @@ const CryptoAuction = () => {
                   <div className="flex items-start space-x-3 sm:space-x-4">
                     <FaClock className="text-[#00ffff] text-lg sm:text-xl mt-1" />
                     <div>
-                      <p className="font-semibold text-[#00ffff] text-sm sm:text-base">Time & Date</p>
-                      <p className="text-sm sm:text-base">March 15, 2025 - 4:00 PM EST</p>
+                      <p className="font-semibold text-[#00ffff] text-sm sm:text-base">Date</p>
+                      <p className="text-sm sm:text-base">MARCH 4th & 5th</p>
                     </div>
                   </div>
 
@@ -67,7 +67,7 @@ const CryptoAuction = () => {
                     <div>
                       <p className="font-semibold text-[#00ffff] text-sm sm:text-base">Location</p>
                       <p className="text-sm sm:text-base">Blockchain Innovation Hub</p>
-                      <p className="text-sm sm:text-base">456 Decentralized Ave, Crypto City</p>
+                      <p className="text-sm sm:text-base">CSE LAB 9 & CSE LAB 10</p>
                     </div>
                   </div>
 
