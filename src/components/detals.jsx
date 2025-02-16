@@ -63,7 +63,7 @@ const OrganizationSection = () => {
     {
       name: "Mrs Srilakshmi ch",
       designation: "Assistant Professor",
-      image: "/srilaxmi.jpeg"
+      image: "/srilaxmi.jpg"
     },
     {
       name: "Dr Subramaniam M",

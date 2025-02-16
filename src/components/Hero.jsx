@@ -173,7 +173,7 @@ const HeroSection = () => {
           bg-gradient-to-r from-slate-300 to-white
           text-transparent bg-clip-text
           drop-shadow-[0_0_10px_rgba(255,255,255,0.2)]">
-          Where innovation meets imagination
+          Where Knowledge meets innovation
         </p>
       </div>
     </div>
