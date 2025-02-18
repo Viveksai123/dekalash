@@ -9,6 +9,7 @@ import SensorSprintSection from "./components/sensor";
 import PresentationSection from "./components/three";
 import OrganizationSection from "./components/detals";
 import MarqueeSection from "./components/Marque";
+import Chatbot from "./components/chatbot";
 import Section from "./components/contact";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
@@ -33,6 +34,7 @@ function App() {
       <SensorSprintSection />
       <PresentationSection />
       <SubHero />
+      <Chatbot/>
       <OrganizationSection />
       <Section />
       <LandingSection />
