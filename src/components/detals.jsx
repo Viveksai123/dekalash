@@ -65,41 +65,7 @@ const OrganizationSection = () => {
       designation: "Assistant Professor",
       image: "/srilaxmi.jpg"
     },
-    {
-      name: "Dr Subramaniam M",
-      designation: "Assistant Professor",
-      image: "/subbu.jpeg"
-    },
-    {
-      name: "Dr. Singamaneni Kranthi Kumar",
-      designation: "Associate Professor",
-      image: "/kranthi.jpeg"
-    },
-    {
-      name: "Smt. P. Vimala Manohara Ruth",
-      designation: "Assistant Professor",
-      image: "/ruth.jpeg"
-    },
-    {
-      name: "Smt. N. Sujata Gupta",
-      designation: "Assistant Professor",
-      image: "/sujatha.jpeg"
-    },
-    {
-      name: "Smt. Kavita Agarwal",
-      designation: "Assistant Professor",
-      image: "/kavitha.jpeg"
-    },
-    {
-      name: "Dr. G. Jaya Rao",
-      designation: "Assistant Professor",
-      image: "/jaya.jpeg"
-    },
-    {
-      name: "Mr. Manish Kumar",
-      designation: "Assistant Professor",
-      image: "/manish.jpeg"
-    }
+    
   ];
 
   const convenor = [
@@ -116,11 +82,45 @@ const OrganizationSection = () => {
   ];
 
   const co = [
-    {
-      name: "Vivek & Aryan",
-      designation: "Institute wise co ordinators",
-      image: "/vivek.jpeg"
-    }
+    
+      {
+        name: "Dr Subramaniam M",
+        designation: "Assistant Professor",
+        image: "/subbu.jpeg"
+      },
+      {
+        name: "Dr. Singamaneni Kranthi Kumar",
+        designation: "Associate Professor",
+        image: "/kranthi.jpeg"
+      },
+      {
+        name: "Smt. P. Vimala Manohara Ruth",
+        designation: "Assistant Professor",
+        image: "/ruth.jpeg"
+      },
+      {
+        name: "Smt. Kavita Agarwal",
+        designation: "Assistant Professor",
+        image: "/kavitha.jpeg"
+      },
+      {
+        name: "Dr. G. Jaya Rao",
+        designation: "Assistant Professor",
+        image: "/jaya.jpeg"
+      },
+      {
+        name: "Smt. N. Sujata Gupta",
+        designation: "Assistant Professor",
+        image: "/sujatha.jpeg"
+      },
+      
+   
+      {
+        name: "Mr. Manish Kumar",
+        designation: "Assistant Professor",
+        image: "/manish.jpeg"
+      }
+    
   ];
 
   const Hod = [
@@ -246,7 +246,7 @@ const OrganizationSection = () => {
           <div className="flex items-center justify-center gap-3 mb-10">
             <FaChalkboardTeacher className="text-[#00ffff] text-3xl" />
             <h3 className="text-3xl font-['Orbitron'] text-[#00ffff]">
-              Institute Coordinators
+              Event Wise Faculty Coordinators
             </h3>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

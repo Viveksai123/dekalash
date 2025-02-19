@@ -1,38 +1,20 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { MessageCircle, Send, X, WifiOff, AlertCircle, Loader } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { MessageCircle, Send, X, AlertCircle, Loader } from 'lucide-react';
 
 const Chatbot = () => {
   const [isChatOpen, setIsChatOpen] = useState(false);
-  const [chatResponse, setChatResponse] = useState('');
+  const [messages, setMessages] = useState([]);
   const [userMessage, setUserMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [isOnline, setIsOnline] = useState(navigator.onLine);
-  const [connectionAttempts, setConnectionAttempts] = useState(0);
   const [isButtonVisible, setIsButtonVisible] = useState(false);
+  const [isOnline, setIsOnline] = useState(navigator.onLine);
 
-  const deployedChatbotURL = 'https://your-chatbot-url.com/api/chat';
+  const API_KEY = 'ye06uBZ1.il21ZJxd0CpcWE3DbdC2GXpOjEXur9PD';
+  const CHANNEL_TOKEN = 'cybernexa_final';
+  const deployedChatbotURL = `https://payload.vextapp.com/hook/MX354AUWLX/catch/${CHANNEL_TOKEN}`;
 
-  // Memoize error messages to prevent unnecessary re-renders
-  const errorMessages = useCallback(() => ({
-    NETWORK_ERROR: "Network connection lost. Please check your internet connection.",
-    SERVER_ERROR: "Server error occurred. Please try again later.",
-    TIMEOUT_ERROR: "Request timed out. Please try again.",
-    RATE_LIMIT_ERROR: "Too many requests. Please wait a moment before trying again.",
-    AUTH_ERROR: "Authentication failed. Please refresh the page.",
-    VALIDATION_ERROR: "Invalid input. Please check your message.",
-    MAX_LENGTH_ERROR: "Message too long. Please shorten your message.",
-    EMPTY_MESSAGE: "Please enter a message before sending.",
-    MAINTENANCE_ERROR: "Service is under maintenance. Please try again later.",
-    API_ERROR: "API error occurred. Please try again.",
-    CONNECTION_ERROR: `Connection failed (Attempt ${connectionAttempts}/3). Retrying...`,
-    UNKNOWN_ERROR: "An unknown error occurred. Please try again."
-  }), [connectionAttempts]);
-
-  // Check online status
   useEffect(() => {
-    const messages = errorMessages();
-    
     const handleOnline = () => {
       setIsOnline(true);
       setError(null);
@@ -40,7 +22,7 @@ const Chatbot = () => {
     
     const handleOffline = () => {
       setIsOnline(false);
-      setError(messages.NETWORK_ERROR);
+      setError("You're offline. Please check your connection.");
     };
 
     window.addEventListener('online', handleOnline);
@@ -50,267 +32,214 @@ const Chatbot = () => {
       window.removeEventListener('online', handleOnline);
       window.removeEventListener('offline', handleOffline);
     };
-  }, [errorMessages]);
+  }, []);
 
-  // Handle chatbot button visibility
   useEffect(() => {
     const handleScroll = () => {
       setIsButtonVisible(window.scrollY > 200);
     };
 
     window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Check initial scroll position
+    handleScroll();
 
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const validateMessage = (message) => {
-    const messages = errorMessages();
-    if (!message.trim()) {
-      throw new Error(messages.EMPTY_MESSAGE);
-    }
-    if (message.length > 500) {
-      throw new Error(messages.MAX_LENGTH_ERROR);
-    }
-  };
-
-  const handleApiErrors = (status) => {
-    const messages = errorMessages();
-    switch (status) {
-      case 400:
-        return messages.VALIDATION_ERROR;
-      case 401:
-        return messages.AUTH_ERROR;
-      case 429:
-        return messages.RATE_LIMIT_ERROR;
-      case 503:
-        return messages.MAINTENANCE_ERROR;
-      default:
-        return messages.SERVER_ERROR;
-    }
-  };
-
   const sendMessageToChatbot = async () => {
-    const messages = errorMessages();
+    if (!userMessage.trim()) return;
+    
     setError(null);
     setIsLoading(true);
 
     try {
-      validateMessage(userMessage);
-
-      // Simulate random errors for demonstration
-      const randomError = Math.random();
-      if (randomError < 0.2) throw new Error(messages.TIMEOUT_ERROR);
-      if (randomError < 0.4) throw new Error(messages.SERVER_ERROR);
-
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 10000);
-
       const response = await fetch(deployedChatbotURL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Apikey': `Api-Key ${API_KEY}`
         },
         body: JSON.stringify({
-          message: userMessage,
-        }),
-        signal: controller.signal
+          payload: userMessage
+        })
       });
 
-      clearTimeout(timeoutId);
-
-      if (!response.ok) {
-        throw new Error(handleApiErrors(response.status));
-      }
-
       const data = await response.json();
-      if (!data.chatbotResponse) {
-        throw new Error(messages.API_ERROR);
-      }
+      console.log('Server response:', data);
+      
+      // Add user message
+      setMessages(prev => [...prev, {
+        type: 'user',
+        content: userMessage,
+        timestamp: new Date()
+      }]);
 
-      setChatResponse(data.chatbotResponse);
+      // Add bot response
+      if (data && data.text) {
+        setMessages(prev => [...prev, {
+          type: 'bot',
+          content: data.text,
+          timestamp: new Date()
+        }]);
+      }
+      
       setUserMessage('');
-      setConnectionAttempts(0);
     } catch (error) {
       console.error('Error:', error);
-      
-      if (error.name === 'AbortError') {
-        setError(messages.TIMEOUT_ERROR);
-      } else if (!navigator.onLine) {
-        setError(messages.NETWORK_ERROR);
-      } else if (connectionAttempts < 3) {
-        setConnectionAttempts(prev => prev + 1);
-        setError(messages.CONNECTION_ERROR);
-        setTimeout(() => sendMessageToChatbot(), 2000);
-      } else {
-        setError(error.message || messages.UNKNOWN_ERROR);
-      }
+      setError('Failed to send message. Please try again.');
     } finally {
       setIsLoading(false);
     }
   };
 
   return (
-    <div className="font-sans"> {/* Base font family */}
-    {/* Main Chatbot Container */}
-    <div
-      className={`fixed bottom-4 right-4 z-50 transition-all duration-500 ease-in-out
-        ${isButtonVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'} 
-        ${isChatOpen ? 'scale-100' : 'scale-0'} 
-        rounded-2xl overflow-hidden bg-gradient-to-b from-gray-800 to-gray-900
-        font-inter tracking-normal`} // Added font family and letter spacing
-      style={{
-        width: '350px',
-        height: isChatOpen ? '500px' : '0px',
-        boxShadow: '0 8px 32px rgba(0, 0, 0, 0.2)',
-      }}
-    >
-      {isChatOpen && (
-        <div className="flex flex-col h-full">
-          {/* Chat Header */}
-          <div className="p-4 bg-gray-800 border-b border-gray-700 flex justify-between items-center">
-            <div className="flex items-center space-x-2">
-              <div className={`w-2 h-2 rounded-full ${isOnline ? 'bg-green-500 animate-pulse' : 'bg-red-500'}`}></div>
-              <div class="d-flex flex-column justify-content-center align-items-start">
-              <h3 className="text-white font-semibold text-lg tracking-tight">Noodles</h3>
-              <p className='text-white'> Hi I'm Chat Assistant</p>
-              </div>
-            </div>
-            <button 
-              onClick={() => setIsChatOpen(false)}
-              className="text-gray-400 hover:text-white transition-colors duration-200"
-            >
-              <X size={20} />
-            </button>
-          </div>
-
-          {/* Network Status Banner */}
-          {!isOnline && (
-            <div className="bg-red-500/80 p-2 text-white text-sm font-medium tracking-wide flex items-center justify-center space-x-2">
-              <WifiOff size={16} />
-              <span>You're offline. Waiting for connection...</span>
-            </div>
-          )}
-
-          {/* Error Display */}
-          {error && (
-            <div className="bg-red-500/80 p-3 text-white text-sm font-medium tracking-wide flex items-center space-x-2 animate-fadeIn">
-              <AlertCircle size={16} />
-              <span>{error}</span>
-            </div>
-          )}
-
-          {/* Chat Messages */}
-          <div className="flex-1 p-4 overflow-y-auto bg-gray-900/50">
-            {chatResponse && (
-              <div className="space-y-4 animate-fadeIn">
-                <div className="flex items-start space-x-2">
-                  <div className="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center">
-                    <MessageCircle size={16} className="text-white" />
+    <div className="font-sans antialiased">
+      <div
+        className={`fixed bottom-4 right-4 z-50 transition-all duration-500 ease-in-out
+          ${isButtonVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'} 
+          ${isChatOpen ? 'scale-100' : 'scale-0'} 
+          rounded-2xl bg-gradient-to-b from-slate-800 via-slate-900 to-slate-950
+          shadow-[0_8px_32px_rgba(0,0,0,0.3)] backdrop-blur-lg border border-slate-700/50`}
+        style={{
+          width: '380px',
+          height: isChatOpen ? '600px' : '0px',
+        }}
+      >
+        {isChatOpen && (
+          <div className="flex flex-col h-full">
+            {/* Chat Header */}
+            <div className="p-4 bg-gradient-to-r from-slate-800 to-slate-900 border-b border-slate-700/50 rounded-t-2xl">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="relative">
+                    <div className={`w-3 h-3 rounded-full ${isOnline ? 'bg-emerald-500' : 'bg-red-500'} 
+                      ${isOnline ? 'animate-pulse' : ''}`}
+                    ></div>
+                    <div className={`absolute inset-0 w-3 h-3 rounded-full ${isOnline ? 'bg-emerald-500' : 'bg-red-500'} 
+                      animate-ping opacity-75`}
+                    ></div>
                   </div>
-                  <div className="flex-1">
-                    <div className="bg-gray-800 p-3 rounded-lg rounded-tl-none text-white text-sm font-normal leading-relaxed">
-                      {chatResponse}
-                    </div>
-                    <span className="text-xs text-gray-500 mt-1 inline-block font-mono">
-                      {new Date().toLocaleTimeString()}
-                    </span>
+                  <div>
+                    <h3 className="text-white font-semibold text-lg tracking-tight">Noodles</h3>
+                    <p className="text-slate-300 text-sm">AI Chat Assistant</p>
                   </div>
                 </div>
+                <button 
+                  onClick={() => setIsChatOpen(false)}
+                  className="text-slate-400 hover:text-white transition-colors duration-200
+                    hover:bg-slate-700/50 rounded-lg p-2"
+                >
+                  <X size={20} />
+                </button>
+              </div>
+            </div>
+
+            {/* Error Display */}
+            {error && (
+              <div className="bg-red-500/90 backdrop-blur-sm p-3 text-white text-sm font-medium 
+                flex items-center gap-2 animate-slideDown border-b border-red-600">
+                <AlertCircle size={16} />
+                <span>{error}</span>
               </div>
             )}
-          </div>
 
-          {/* Input Area */}
-          <div className="p-4 bg-gray-800/90 border-t border-gray-700">
-            <div className="relative">
-              <textarea
-                className={`w-full p-3 pr-12 bg-gray-900 text-white rounded-lg resize-none 
-                  focus:outline-none focus:ring-2 transition-shadow
-                  ${error ? 'focus:ring-red-500 border-red-500' : 'focus:ring-blue-500'}
-                  text-sm font-normal leading-relaxed placeholder-gray-400`}
-                placeholder={isOnline ? "Type your message..." : "Waiting for connection..."}
-                value={userMessage}
-                onChange={(e) => setUserMessage(e.target.value)}
-                disabled={!isOnline || isLoading}
-                rows="2"
-              ></textarea>
-              <button
-                className={`absolute right-2 bottom-2 p-2 rounded-lg transition-all duration-200 
-                  ${isLoading || !isOnline ? 'bg-gray-700 cursor-not-allowed' : 'bg-blue-500 hover:bg-blue-600'}`}
-                onClick={sendMessageToChatbot}
-                disabled={isLoading || !isOnline}
-              >
-                {isLoading ? (
-                  <Loader size={18} className="text-white animate-spin" />
-                ) : (
-                  <Send size={18} className="text-white transform transition-transform hover:scale-110" />
-                )}
-              </button>
+            {/* Chat Messages */}
+            <div className="flex-1 p-4 overflow-y-auto bg-gradient-to-b from-slate-900/50 to-slate-950/50">
+              <div className="space-y-6">
+                {messages.map((message, index) => (
+                  <div key={index} 
+                    className={`flex items-start gap-3 ${message.type === 'user' ? 'flex-row-reverse' : ''}`}>
+                    <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center
+                      ${message.type === 'user' 
+                        ? 'bg-gradient-to-r from-emerald-500 to-teal-500' 
+                        : 'bg-gradient-to-r from-blue-500 to-indigo-500'}`}
+                    >
+                      <MessageCircle size={16} className="text-white" />
+                    </div>
+                    <div className={`max-w-[75%] ${message.type === 'user' ? 'text-right' : ''}`}>
+                      <div className={`p-3 rounded-2xl shadow-md inline-block
+                        ${message.type === 'user' 
+                          ? 'bg-gradient-to-r from-emerald-500 to-teal-500 text-white rounded-tr-none' 
+                          : 'bg-gradient-to-r from-slate-800 to-slate-900 text-slate-100 rounded-tl-none'}`}
+                      >
+                        <p className="text-sm leading-relaxed">{message.content}</p>
+                      </div>
+                      <div className="text-xs text-slate-400 mt-1 px-1">
+                        {message.timestamp.toLocaleTimeString([], { 
+                          hour: '2-digit', 
+                          minute: '2-digit' 
+                        })}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
-            {/* Character count */}
-            <div className="text-xs text-gray-500 mt-1 font-mono">
-              {userMessage.length}/500 characters
+
+            {/* Input Area */}
+            <div className="p-4 bg-gradient-to-r from-slate-800 to-slate-900 border-t border-slate-700/50 rounded-b-2xl">
+              <div className="relative">
+                <textarea
+                  className={`w-full px-4 py-3 pr-12 bg-slate-950/50 text-white rounded-xl resize-none
+                    placeholder-slate-400 border border-slate-700/50
+                    focus:outline-none focus:ring-2 transition-all duration-200
+                    ${error ? 'focus:ring-red-500/50' : 'focus:ring-blue-500/50'}
+                    text-sm`}
+                  placeholder={isOnline ? "Type your message..." : "Waiting for connection..."}
+                  value={userMessage}
+                  onChange={(e) => setUserMessage(e.target.value)}
+                  disabled={!isOnline || isLoading}
+                  rows="2"
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' && !e.shiftKey) {
+                      e.preventDefault();
+                      sendMessageToChatbot();
+                    }
+                  }}
+                />
+                <button
+                  className={`absolute right-2 bottom-2 p-2 rounded-lg transition-all duration-200
+                    ${isLoading || !isOnline 
+                      ? 'bg-slate-700 cursor-not-allowed'
+                      : 'bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 hover:shadow-lg'}`}
+                  onClick={sendMessageToChatbot}
+                  disabled={isLoading || !isOnline}
+                >
+                  {isLoading ? (
+                    <Loader size={18} className="text-white animate-spin" />
+                  ) : (
+                    <Send size={18} className="text-white transform transition-transform hover:scale-110" />
+                  )}
+                </button>
+              </div>
             </div>
           </div>
-        </div>
+        )}
+      </div>
+
+      {/* Chat Toggle Button */}
+      <button
+        className={`fixed bottom-4 right-4 z-50 transition-all duration-500 ease-in-out
+          ${isButtonVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'} 
+          ${isChatOpen ? 'scale-0' : 'scale-100'}
+          w-14 h-14 rounded-full bg-gradient-to-r from-blue-500 to-indigo-500
+          hover:from-blue-600 hover:to-indigo-600 focus:outline-none focus:ring-2 
+          focus:ring-blue-500 focus:ring-offset-2 shadow-lg hover:shadow-xl
+          transform hover:-translate-y-1`}
+        onClick={() => setIsChatOpen(true)}
+      >
+        <MessageCircle className="w-6 h-6 text-white mx-auto" />
+      </button>
+
+      {/* Backdrop */}
+      {isChatOpen && (
+        <div 
+          className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40 
+            transition-opacity duration-500 ease-in-out"
+          onClick={() => setIsChatOpen(false)}
+        />
       )}
     </div>
-
-    {/* Chat Toggle Button */}
-    <button
-      className={`fixed bottom-4 right-4 z-50 transition-all duration-500 ease-in-out
-        ${isButtonVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'} 
-        ${isChatOpen ? 'scale-0' : 'scale-100'}
-        w-14 h-14 rounded-full bg-gradient-to-r from-blue-500 to-blue-600 
-        hover:from-blue-600 hover:to-blue-700 focus:outline-none focus:ring-2 
-        focus:ring-blue-500 focus:ring-offset-2 shadow-lg hover:shadow-xl
-        transform hover:-translate-y-1`}
-      onClick={() => setIsChatOpen(true)}
-    >
-      <MessageCircle className="w-6 h-6 text-white mx-auto" />
-    </button>
-
-    {/* Backdrop */}
-    {isChatOpen && (
-      <div 
-        className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40 
-          transition-opacity duration-500 ease-in-out"
-        onClick={() => setIsChatOpen(false)}
-      />
-    )}
-
-    <style jsx>{`
-      /* Font imports */
-      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
-      @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap');
-
-      /* Rest of your existing styles... */
-      
-      /* Typography overrides */
-      .font-inter {
-        font-family: 'Inter', system, -apple-system, sans-serif;
-      }
-
-      .font-mono {
-        font-family: 'JetBrains Mono', monospace;
-      }
-
-      /* Line height adjustments */
-      .leading-relaxed {
-        line-height: 1.625;
-      }
-
-      /* Font smoothing */
-      * {
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-      }
-    `}</style>
-  </div>
-);
+  );
 };
 
 export default Chatbot;
