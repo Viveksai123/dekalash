@@ -15,14 +15,14 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 function App() {
-  // useEffect(() => {
-  //   const disableRightClick = (event) => event.preventDefault();
-  //   document.addEventListener("contextmenu", disableRightClick);
+  useEffect(() => {
+    const disableRightClick = (event) => event.preventDefault();
+    document.addEventListener("contextmenu", disableRightClick);
 
-  //   return () => {
-  //     document.removeEventListener("contextmenu", disableRightClick);
-  //   };
-  // }, []);
+    return () => {
+      document.removeEventListener("contextmenu", disableRightClick);
+    };
+  }, []);
 
   return (
     <div>
